@@ -64,7 +64,7 @@ export class DartPadController implements IPadController {
     if (config.withoutPackages) {
       return { openDartPadWorkspace: false };
     } else {
-      let packages = this.getInitialPackages();
+      let packages = fs_utils.getExtensionConfiguration().dartPackages;
 
       /// Don't wait for package initializing because it isn't necessary however it blocs interaction with dart pad.
       installPackagesIfNeeded({
@@ -76,19 +76,6 @@ export class DartPadController implements IPadController {
       return {
         openDartPadWorkspace: packages.length !== 0
       };
-    }
-
-  }
-
-  getInitialPackages(): Array<string> {
-    let configuration = vscode.workspace.getConfiguration('dartPad');
-
-    let initialPackages = configuration.get<Array<string>>('packages');
-
-    if (!initialPackages) {
-      return [];
-    } else {
-      return initialPackages;
     }
   }
 

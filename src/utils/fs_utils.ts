@@ -1,4 +1,5 @@
 import * as fs from 'fs/promises';
+import * as vscode from 'vscode';
 
 export async function isExist(path: string): Promise<boolean> {
   try {
@@ -13,4 +14,16 @@ export async function initializeCacheDirIfNeeded(cachePath: string) {
   if (!await isExist(cachePath)) {
     await fs.mkdir(cachePath);
   }
+}
+
+export function getExtensionConfiguration(): ExtensionConfiguration {
+  let configuration = vscode.workspace.getConfiguration('dartPad');
+
+  return {
+    dartPackages: configuration.get<Array<string>>('dartPackages') ?? [],
+  };
+}
+
+export interface ExtensionConfiguration {
+  dartPackages: Array<string>;
 }

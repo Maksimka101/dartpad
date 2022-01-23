@@ -38,15 +38,16 @@
 		"configuration": {
 			"title": "Dart Pad",
 			"properties": {
-				"dartPad.packages": {
-					"type": [
-						"array"
-					],
+				"dartPad.dartPackages": {
+					"type": "array",
 					"default": [
 						"dio",
 						"uuid"
 					],
-					"description": "An array of packages which will be available in the dart pad."
+					"description": "An array of packages which will be available in the Dart Pad.",
+					"items": {
+						"type": "string"
+					}
 				}
 			}
 		}
