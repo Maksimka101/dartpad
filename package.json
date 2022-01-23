@@ -1,6 +1,9 @@
 {
 	"name": "dartpad",
 	"displayName": "DartPad",
+	"repository": {
+		"url": "https://github.com/Maksimka101/dartpad"
+	},
 	"description": "VS Code extension which allows you to use Dart Pad right in you editor",
 	"version": "0.1.0",
 	"engines": {
