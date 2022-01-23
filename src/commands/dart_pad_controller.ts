@@ -2,18 +2,18 @@ import * as vscode from 'vscode';
 import * as fs from 'fs/promises';
 import * as fs_utils from '../utils/fs_utils';
 import { dartMainTemplate } from '../utils/dart_main_template';
-import { IPadController } from './i_pad_controller';
+import { IPadController, PadConfig } from './i_pad_controller';
 import { CommandDoesNotExist, ensureCommandExist as ensureCommandExist, executeCommand, installPackagesIfNeeded } from '../utils/process_utils';
 
 export class DartPadController implements IPadController {
-  async openPad(context: vscode.ExtensionContext): Promise<void> {
+  async openPad(context: vscode.ExtensionContext, config: PadConfig): Promise<void> {
     let cacheUri = context.globalStorageUri;
 
-    let result = await this.initializePadIfNeeded(cacheUri);
+    let result = await this.initializePadIfNeeded(cacheUri, config);
 
     await vscode.window.showTextDocument(
       this.getDartPadMainUri(cacheUri),
-      { viewColumn: vscode.ViewColumn.Beside },
+      { viewColumn: config.inSplitView ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active },
     );
 
     // Need to open dart pad workspace when user has set `packages` because dart analyzer must "see" `pubspec.yaml` file.
@@ -25,7 +25,7 @@ export class DartPadController implements IPadController {
     }
   }
 
-  async initializePadIfNeeded(cacheUri: vscode.Uri): Promise<DartPadInitializationResult> {
+  async initializePadIfNeeded(cacheUri: vscode.Uri, config: PadConfig): Promise<DartPadInitializationResult> {
     await fs_utils.initializeCacheDirIfNeeded(cacheUri.path);
 
     let dartPadMainUri = this.getDartPadMainUri(cacheUri);
@@ -61,18 +61,23 @@ export class DartPadController implements IPadController {
 
     }
 
-    let packages = this.getInitialPackages();
+    if (config.withoutPackages) {
+      return { openDartPadWorkspace: false };
+    } else {
+      let packages = this.getInitialPackages();
 
-    /// Don't wait for package initializing because it isn't necessary however it blocs interaction with dart pad.
-    installPackagesIfNeeded({
-      flutterPackages: false,
-      cwd: dartPadUri.path,
-      packages: packages,
-    });
+      /// Don't wait for package initializing because it isn't necessary however it blocs interaction with dart pad.
+      installPackagesIfNeeded({
+        flutterPackages: false,
+        cwd: dartPadUri.path,
+        packages: packages,
+      });
 
-    return {
-      openDartPadWorkspace: packages.length !== 0
-    };
+      return {
+        openDartPadWorkspace: packages.length !== 0
+      };
+    }
+
   }
 
   getInitialPackages(): Array<string> {

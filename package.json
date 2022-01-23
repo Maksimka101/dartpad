@@ -10,7 +10,10 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:dartPad.openDartPad"
+		"onCommand:dartPad.openDartPad",
+		"onCommand:dartPad.openDartPadInSplitView",
+		"onCommand:dartPad.openPureDart",
+		"onCommand:dartPad.openPureDartPadInSplitView"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -18,6 +21,18 @@
 			{
 				"command": "dartPad.openDartPad",
 				"title": "Open Dart Pad"
+			},
+			{
+				"command": "dartPad.openDartPadInSplitView",
+				"title": "Open Dart Pad in Split View"
+			},
+			{
+				"command": "dartPad.openPureDartPad",
+				"title": "Open Pure Dart Pad"
+			},
+			{
+				"command": "dartPad.openPureDartPadInSplitView",
+				"title": "Open Pure Dart Pad in Split View"
 			}
 		],
 		"configuration": {
@@ -27,7 +42,10 @@
 					"type": [
 						"array"
 					],
-					"default": [],
+					"default": [
+						"dio",
+						"uuid"
+					],
 					"description": "An array of packages which will be available in the dart pad."
 				}
 			}
