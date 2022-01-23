@@ -1,0 +1,1 @@
+export const dartMainTemplate = "void main() {\n\tprint('Hello world!');\n}\n";
