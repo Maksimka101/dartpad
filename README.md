@@ -10,6 +10,10 @@ It opens dart file located outside of your project which you can edit, run and d
 - Open Dart Pad with installed packages with the command `Open Dart Pad`
 - Open Dart Pad with installed packages in split view with the command `Open Dart Pad in Split View`
 
+![Using Dart Pad without packages](assets/images/pure_dart_pad_in_split_view.gif)
+
+![Using Dart Pad with Dio package](assets/images/dart_pad_with_packages.gif)
+
 ## Requirements
 
 `dart` command should be available.
