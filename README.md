@@ -18,7 +18,8 @@ It opens dart file located outside of your project which you can edit, run and d
 
 This extension contributes the following settings:
 
-- `dartPad.dartPackages`: An array of packages which will be available in the Dart Pad
+- `dartPad.dartPackages`: An array of packages which will be available in the Dart Pad. 
+  Initial packages are `dio` and `uuid`
 
 ## Known Issues
 
