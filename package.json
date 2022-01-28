@@ -4,6 +4,10 @@
 	"repository": {
 		"url": "https://github.com/Maksimka101/dartpad"
 	},
+	"author": {
+		"name": "Zemlyanikin Maksim"
+	},
+	"icon": "assets/icons/dart_pad_icon.png",
 	"description": "VS Code extension which allows you to use Dart Pad right in you editor",
 	"version": "0.1.0",
 	"engines": {
