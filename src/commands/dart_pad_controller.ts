@@ -3,7 +3,7 @@ import * as fs from 'fs/promises';
 import * as fs_utils from '../utils/fs_utils';
 import { dartMainTemplate } from '../utils/dart_main_template';
 import { IPadController, PadConfig } from './i_pad_controller';
-import { CommandDoesNotExist, ensureCommandExist as ensureCommandExist, executeCommand, installPackagesIfNeeded } from '../utils/process_utils';
+import { CommandDoesNotExist, executeCommand, installPackagesIfNeeded } from '../utils/process_utils';
 
 export class DartPadController implements IPadController {
   async openPad(context: vscode.ExtensionContext, config: PadConfig): Promise<void> {

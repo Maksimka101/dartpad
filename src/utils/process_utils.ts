@@ -27,8 +27,7 @@ export async function installPackagesIfNeeded(options: InstallPackagesOptions) {
 
   let installedPackages = await getInstalledPackages(pubCommand, options.cwd);
 
-  let packagesToInstall = options.packages;
-  packagesToInstall.filter((pkg) => installedPackages.includes(pkg));
+  let packagesToInstall = options.packages.filter((pkg) => !installedPackages.includes(pkg));
 
   for (let pkg of packagesToInstall) {
     try {

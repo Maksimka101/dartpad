@@ -4,6 +4,7 @@
 	"repository": {
 		"url": "https://github.com/Maksimka101/dartpad"
 	},
+	"publisher": "MaksimZemlyanikin",
 	"author": {
 		"name": "Zemlyanikin Maksim"
 	},
@@ -19,7 +20,7 @@
 	"activationEvents": [
 		"onCommand:dartPad.openDartPad",
 		"onCommand:dartPad.openDartPadInSplitView",
-		"onCommand:dartPad.openPureDart",
+		"onCommand:dartPad.openPureDartPad",
 		"onCommand:dartPad.openPureDartPadInSplitView"
 	],
 	"main": "./out/extension.js",
